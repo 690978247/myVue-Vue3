@@ -99,8 +99,17 @@ const router = createRouter({
       ]
     },
     {
+      path: '/404',
+      component: NotFound,
+      hidden: true,
+      meta: {
+        title: '404'
+      }
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
+      redirect: '/404',
       hidden: true,
       component: NotFound,
       meta: {
