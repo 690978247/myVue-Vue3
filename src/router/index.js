@@ -8,19 +8,35 @@ const router = createRouter({
       path: '/',
       component: () => import('../layout/index.vue'),
       redirect: '/home',
+      meta: {
+        title: '首页'
+      },
       children: [
         {
           path: 'home',
-          component: () => import('../views/home/home.vue')
+          component: () => import('../views/home/home.vue'),
+          meta: {
+            title: '首页',
+            icon: 'el-icon-star-off'
+          },
         }
       ]
     },
     {
       path: '/helloword',
-      component: () => import('../components/HelloWorld.vue')
+      component: () => import('../components/HelloWorld.vue'),
+      meta: {
+        title: 'Hello Page'
+      },
     },
     {
-      path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      hidden: true,
+      component: NotFound,
+      meta: {
+        title: '404 Page'
+      },
     }
   ]
 })
