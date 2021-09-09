@@ -1,13 +1,15 @@
 <script setup >
+import mainView from './components/mainView.vue'
+import sideBar from './components/sidebar.vue'
 
 </script>
 
 <template>
   <div class="app-wrap" >
-    <div class="aside">aside</div>
+    <sideBar class="aside"></sideBar>
     <div class="app-main" >
       <div class="main-header" >main-header</div>
-      <div class="main-wrap" >main-content</div>
+      <mainView class="main-wrap"></mainView>
     </div>
   </div>
 </template>
