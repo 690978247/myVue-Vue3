@@ -3,11 +3,10 @@
 </script>
 
 <template>
-  <div id="app">
+  <div id="nav">
     <router-view />
   </div>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
 </style>

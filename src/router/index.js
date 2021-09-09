@@ -6,7 +6,14 @@ const router = createRouter({
   routes:[
     {
       path: '/',
-      component: () => import('../components/HelloWorld.vue')
+      component: () => import('../layout/index.vue'),
+      redirect: '/home',
+      children: [
+        {
+          path: 'home',
+          component: () => import('../views/home/home.vue')
+        }
+      ]
     },
     {
       path: '/helloword',
