@@ -23,7 +23,10 @@ import sideBar from './components/sidebar.vue'
   }
   .aside {
     width: $aside-width;
+    min-width: $aside-width;
     height: 100%;
+    background: #545C64;
+    color: #fff;
   }
   .app-main {
     width: 100%;

@@ -19,6 +19,7 @@ const isCollapse = ref(false)
       router
       :collapse="isCollapse"
       active-text-color="#ffd04b"
+      style="border: 1px solid #545c64"
     >
     <template v-for="(item,key) in routes" :key="key" >
         <template v-if="!item.hidden" >
