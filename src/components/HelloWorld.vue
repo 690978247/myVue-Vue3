@@ -25,8 +25,9 @@ watch(count, (newVal, oldVal) => {
 })
 
 onMounted(() => {
-  setItemRef
-  console.log(root,root.value)
+  itemRefs.forEach(item => {
+    console.log(item)
+  })
 })
 
 </script>
