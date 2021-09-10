@@ -9,7 +9,8 @@ const router = createRouter({
       component: () => import('../layout/index.vue'),
       redirect: '/home',
       meta: {
-        title: '首页'
+        title: '首页',
+        icon: 'el-icon-star-off'
       },
       children: [
         {
@@ -18,7 +19,6 @@ const router = createRouter({
           component: () => import('../views/home/home.vue'),
           meta: {
             title: '首页',
-            icon: 'el-icon-star-off'
           },
         }
       ]
@@ -47,14 +47,17 @@ const router = createRouter({
           path: 'nav1-3',
           name: 'Nav1-3',
           component: () => import('../views/navPage/nav1/nav1-3.vue'),
-          meta: { title: 'nav1-3页面' }
+          meta: { title: 'nav1-3页面' },
+          children: [
+            {
+              path: 'nav1-4',
+              name: 'Nav1-4',
+              component: () => import('../views/navPage/nav1/nav1-4-1.vue'),
+              meta: { title: 'nav1-4页面' }
+            },
+          ]
         },
-        {
-          path: 'nav1-4',
-          name: 'Nav1-4',
-          component: () => import('../views/navPage/nav1/nav1-4-1.vue'),
-          meta: { title: 'nav1-4页面' }
-        },
+        
         {
           path: 'nav2-1',
           name: 'Nav2-1',
@@ -98,24 +101,24 @@ const router = createRouter({
         }
       ]
     },
-    {
-      path: '/404',
-      component: NotFound,
-      hidden: true,
-      meta: {
-        title: '404'
-      }
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'not-found',
-      redirect: '/404',
-      hidden: true,
-      component: NotFound,
-      meta: {
-        title: '404 Page'
-      },
-    }
+    // {
+    //   path: '/404',
+    //   component: NotFound,
+    //   hidden: true,
+    //   meta: {
+    //     title: '404'
+    //   }
+    // },
+    // {
+    //   path: '/:pathMatch(.*)*',
+    //   name: 'not-found',
+    //   redirect: '/404',
+    //   hidden: true,
+    //   component: NotFound,
+    //   meta: {
+    //     title: '404 Page'
+    //   },
+    // }
   ]
 })
 

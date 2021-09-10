@@ -1,6 +1,7 @@
 <script setup>
-import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import sidebarItem from './sidebarItem.vue'
 
 const router = useRouter()
 const route = computed(() => router.currentRoute.value) 
@@ -21,7 +22,10 @@ const isCollapse = ref(false)
       active-text-color="#ffd04b"
       style="border: 1px solid #545c64"
     >
-    <template v-for="(item,key) in routes" :key="key" >
+    
+    <sidebarItem v-for="route in routes" :item="route" :key="route.path" :base-path="route.path" />
+
+    <!-- <template v-for="(item,key) in routes" :key="key" >
         <template v-if="!item.hidden" >
           <el-sub-menu v-if="item.children && item.children.length > 1" :index="item.path" >
             <template #title >
@@ -40,7 +44,7 @@ const isCollapse = ref(false)
             </template>
           </el-menu-item>
         </template>
-      </template>
+      </template> -->
     </el-menu>
   </div>
 </template>
