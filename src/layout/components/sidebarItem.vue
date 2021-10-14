@@ -25,6 +25,8 @@
 </template>
 
 <script setup >
+import { useRouter } from 'vue-router'
+import { computed } from 'vue'
   const props = defineProps({
     // route object
     item: {
@@ -41,15 +43,22 @@
   const isExternal = function(path) {
     return /^(https?:|mailto:|tel:)/.test(path)
   }
-
+  const router = useRouter()
   const resolvePath = function(routePath) {
-      if (isExternal(routePath)) {
+    if (isExternal(routePath)) {
         return routePath
       }
       if (isExternal(props.basePath)) {
         return props.basePath
       }
-      return props.basePath
+      let routes = router.getRoutes()
+      routes.forEach(item => {
+        let path = item.path.substr(item.path.lastIndexOf("/") + 1)
+        if (path === routePath) {
+          routePath = item.path
+        }
+      })
+      return routePath
     }
 
 
