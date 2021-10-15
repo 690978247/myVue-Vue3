@@ -33,12 +33,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="root">This is a root element</div>
-  <h1 class="text" >{{ msg }}</h1>
-  <el-input v-model="count" ></el-input>
-  <el-input v-model="calaulate" ></el-input>
-  <div v-for="item in list" :key="item" :ref="setItemRef">{{item}}</div>
-  <button type="button" @click="count++">count is: {{ count }}</button>
+<!-- 这里需要有一个根节点，否则router-view transtions 会报错 -->
+  <div>
+    <div ref="root">This is a root element</div>
+    <h1 class="text" >{{ msg }}</h1>
+    <el-input v-model="count" ></el-input>
+    <el-input v-model="calaulate" ></el-input>
+    <div v-for="item in list" :key="item" :ref="setItemRef">{{item}}</div>
+    <button type="button" @click="count++">count is: {{ count }}</button>
+  </div>
 </template>
 
 <style scoped>
