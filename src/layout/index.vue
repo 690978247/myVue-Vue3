@@ -32,6 +32,7 @@ import sideBar from './components/sidebar.vue'
     width: 100%;
     height: 100%;
     padding: 10px;
+    box-sizing: border-box;
     .main-header{
       width: 100%;
       height: 65px;
