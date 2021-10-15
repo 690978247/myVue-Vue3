@@ -28,7 +28,8 @@ const router = createRouter({
       component: () => import('../layout/index.vue'),
       redirect: '/nav/nav1-1',
       meta: {
-        title: '嵌套菜单'
+        title: '嵌套菜单',
+        icon: 'el-icon-bell'
       },
       children: [
         {
@@ -89,7 +90,8 @@ const router = createRouter({
       component: () => import('../layout/index.vue'),
       redirect: '/helloword/index',
       meta: {
-        title: 'Hello Page'
+        title: 'Hello Page',
+        icon: 'el-icon-s-promotion'
       },
       children: [
         {
