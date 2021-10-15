@@ -33,8 +33,8 @@ onMounted(() => {
 </script>
 
 <template>
-<!-- 这里需要有一个根节点，否则router-view transtions 会报错 -->
   <div>
+    <!-- 这里需要有一个根节点，否则router-view transtions 会报错 -->
     <div ref="root">This is a root element</div>
     <h1 class="text" >{{ msg }}</h1>
     <el-input v-model="count" ></el-input>
