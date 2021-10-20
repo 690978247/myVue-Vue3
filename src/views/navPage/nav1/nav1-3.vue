@@ -1,6 +1,7 @@
 <template>
   <div>
-    这是nav1-3页面
+    <span>这是nav1-3页面, 下面是router-view</span>
+    <router-view />
   </div>
 </template>
 

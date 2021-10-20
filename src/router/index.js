@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory  } from "vue-router"
 import NotFound from '../components/404NotFound.vue'
+import Layout from '../layout/index.vue'
 
 const router = createRouter({
   history: createWebHashHistory(), // hash模式：createWebHashHistory，history模式：createWebHistory,abstract模式: createMemoryHistory()
   routes:[
     {
       path: '/',
-      component: () => import('../layout/index.vue'),
+      component: Layout,
       redirect: '/home',
       meta: {
         title: '首页',
@@ -25,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/nav',
-      component: () => import('../layout/index.vue'),
+      component: Layout,
       redirect: '/nav/nav1-1',
       meta: {
         title: '嵌套菜单',
@@ -47,7 +48,7 @@ const router = createRouter({
         {
           path: 'nav1-3',
           name: 'Nav1-3',
-          component: () => import('../views/navPage/nav1/nav1-3.vue'),
+          component: () => import('../views/navPage/nav1/nav1-3.vue'),    // 此页面处需要添加<router-view />
           meta: { title: 'nav1-3页面' },
           children: [
             {
@@ -87,7 +88,7 @@ const router = createRouter({
     },
     {
       path: '/helloword',
-      component: () => import('../layout/index.vue'),
+      component: Layout,
       redirect: '/helloword/index',
       meta: {
         title: 'Hello Page',
