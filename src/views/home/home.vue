@@ -24,9 +24,14 @@
   //   },
   // }
 
-  import { ref } from 'vue'
+  import { ref, getCurrentInstance, computed } from 'vue'
   import { ElMessage } from 'element-plus'
+  const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
+
+  const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
+
   const imageUrl = ref('')
+  
   const handleAvatarSuccess = (res, file) => {
     imageUrl = URL.createObjectURL(file.raw)
   }
@@ -47,6 +52,7 @@
 
 <template>
   <div>
+    <span>{{time}}</span>
     <el-upload
     class="avatar-uploader"
     action="https://jsonplaceholder.typicode.com/posts/"

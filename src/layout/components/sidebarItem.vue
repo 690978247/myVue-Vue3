@@ -39,7 +39,6 @@ import { computed } from 'vue'
     }
   })
 
-  console.log(props.basePath)
   const isExternal = function(path) {
     return /^(https?:|mailto:|tel:)/.test(path)
   }
