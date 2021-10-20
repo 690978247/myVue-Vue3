@@ -29,7 +29,7 @@
   // const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
   // const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
 
-  const imageUrl = ref('')
+  let imageUrl = ref('')
 
   const $dayjs = inject('$dayjs')
   const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))

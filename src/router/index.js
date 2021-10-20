@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory  } from "vue-router"
+import { createRouter, createWebHashHistory } from "vue-router"
 import NotFound from '../components/404NotFound.vue'
 import Layout from '../layout/index.vue'
 
 const router = createRouter({
   history: createWebHashHistory(), // hash模式：createWebHashHistory，history模式：createWebHistory,abstract模式: createMemoryHistory()
-  routes:[
+  routes: [
     {
       path: '/',
       component: Layout,
@@ -59,7 +59,7 @@ const router = createRouter({
             },
           ]
         },
-        
+
         {
           path: 'nav2-1',
           name: 'Nav2-1',
