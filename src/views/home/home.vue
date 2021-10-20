@@ -24,13 +24,15 @@
   //   },
   // }
 
-  import { ref, getCurrentInstance, computed } from 'vue'
+  import { ref, getCurrentInstance, computed, inject } from 'vue'
   import { ElMessage } from 'element-plus'
-  const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
-
-  const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
+  // const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
+  // const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
 
   const imageUrl = ref('')
+
+  const $dayjs = inject('$dayjs')
+  const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
   
   const handleAvatarSuccess = (res, file) => {
     imageUrl = URL.createObjectURL(file.raw)
