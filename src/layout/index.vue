@@ -1,18 +1,24 @@
-<script setup >
-import mainView from './components/mainView.vue'
-import sideBar from './components/sidebar.vue'
-
-</script>
-
 <template>
   <div class="app-wrap" >
     <sideBar class="aside"></sideBar>
     <div class="app-main" >
-      <div class="main-header" >main-header</div>
+      <div class="main-header" >
+        <el-icon>
+          <Fold />
+        </el-icon>
+      </div>
       <mainView class="main-wrap"></mainView>
     </div>
   </div>
 </template>
+
+<script setup >
+import mainView from './components/mainView.vue'
+import sideBar from './components/sidebar.vue'
+import { Fold } from '@element-plus/icons'
+
+</script>
+
 
 <style lang="scss" scoped>
   $aside-width: 230px;
