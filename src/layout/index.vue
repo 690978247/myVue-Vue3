@@ -1,9 +1,9 @@
 <template>
   <div class="app-wrap" >
-    <sideBar class="aside"></sideBar>
+    <sideBar :class="classObj" class="aside"></sideBar>
     <div class="app-main" >
       <div class="main-header" >
-        <el-icon>
+        <el-icon :size="30" @click="toggleMenu" >
           <Fold />
         </el-icon>
       </div>
@@ -16,6 +16,19 @@
 import mainView from './components/mainView.vue'
 import sideBar from './components/sidebar.vue'
 import { Fold } from '@element-plus/icons'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+
+const store = useStore()
+
+const classObj = computed(() => ({
+  openSidebar: store.state.sideBar.opened
+}))
+
+const toggleMenu = () => {
+  store.dispatch('toggleSidebar')
+}
+
 
 </script>
 
@@ -54,6 +67,11 @@ import { Fold } from '@element-plus/icons'
       height: calc(100% - 65px);
       box-sizing: border-box;
     }
+  }
+  .openSidebar {
+    width: 70px;
+    min-width: 70px;
+    transition: all .5s;
   }
   
 </style>

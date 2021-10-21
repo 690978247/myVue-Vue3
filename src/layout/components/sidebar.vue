@@ -1,17 +1,22 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import sidebarItem from './sidebarItem.vue'
 
 const router = useRouter()
 const route = computed(() => router.currentRoute.value) 
 const routes = computed(() => router.options.routes)
-const isCollapse = ref(false)
+const store = useStore()
+
+const isCollapse = computed(() => {
+  return store.state.sideBar.opened
+})
 
 </script>
 <template>
   <div>
-    <div class="aside-header" >This is a Logo</div>
+    <div class="aside-header" v-if="!isCollapse"  >This is a Logo</div>
     <el-menu
       :default-active="route.path"
       class="el-menu-vertical-demo"

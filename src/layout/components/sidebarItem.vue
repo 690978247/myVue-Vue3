@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!item.hidden">
+    <template v-if="!item.hidden">
       <template v-if="item.children && item.children.length !== 0" >
         <el-sub-menu :index="resolvePath(item.path)" popper-append-to-body>
           <template #title>
@@ -21,7 +21,7 @@
           <span>{{item.meta.title}}</span> 
         </el-menu-item>
       </template>
-    </div>
+    </template>
 </template>
 
 <script setup >
