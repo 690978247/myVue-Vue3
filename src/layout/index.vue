@@ -3,7 +3,7 @@
     <sideBar :class="classObj" class="aside"></sideBar>
     <div class="app-main" >
       <div class="main-header" >
-        <el-icon :size="30" @click="toggleMenu" >
+        <el-icon :size="30" @click="toggleMenu" :class="{ 'iconRotate' : isRotate}" >
           <Fold />
         </el-icon>
       </div>
@@ -21,6 +21,7 @@ import { computed } from 'vue'
 
 const store = useStore()
 
+const isRotate = computed(() => store.state.sideBar.opened)
 const classObj = computed(() => ({
   openSidebar: store.state.sideBar.opened
 }))
@@ -72,6 +73,10 @@ const toggleMenu = () => {
     width: 70px;
     min-width: 70px;
     transition: all .5s;
+  }
+
+  .iconRotate {
+    transform: rotate(180deg);
   }
   
 </style>
