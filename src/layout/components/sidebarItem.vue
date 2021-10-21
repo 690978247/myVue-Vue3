@@ -25,6 +25,7 @@
 </template>
 
 <script setup >
+import path from "path-browserify";
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
   const props = defineProps({
@@ -44,7 +45,7 @@ import { computed } from 'vue'
   }
   const router = useRouter()
   const resolvePath = function(routePath) {
-    if (isExternal(routePath)) {
+     if (isExternal(routePath)) {
         return routePath
       }
       if (isExternal(props.basePath)) {
@@ -58,6 +59,7 @@ import { computed } from 'vue'
         }
       })
       return routePath
+    // return path.resolve(props.basePath, routePath)
     }
 
 
