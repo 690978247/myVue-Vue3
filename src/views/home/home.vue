@@ -15,7 +15,7 @@
 </template>
 
 <script setup >
-  import { ref, getCurrentInstance, computed, inject } from 'vue'
+  import { ref, getCurrentInstance, computed, inject, onDeactivated  } from 'vue'
   import { ElMessage } from 'element-plus'
   // const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
   // const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
@@ -25,7 +25,7 @@
   const $dayjs = inject('$dayjs')
   let time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
   
-  setInterval(() => {
+  let timer = setInterval(() => {
     time.value = $dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss')
   }, 1000)
   
@@ -44,6 +44,11 @@
       }
       return isJPG && isLt2M
   }
+    onDeactivated(() => {
+      clearInterval(timer)
+      timer = null
+      console.log('onDeactivated!')
+    })
 
 </script>
 
