@@ -14,7 +14,7 @@
 
 <script setup >
 import mainView from './components/mainView.vue'
-import sideBar from './components/sidebar.vue'
+import sideBar from './components/sideBar/index.vue'
 import { Fold } from '@element-plus/icons'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
