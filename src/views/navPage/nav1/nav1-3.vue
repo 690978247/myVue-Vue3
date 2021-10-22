@@ -1,7 +1,11 @@
 <template>
   <div>
     <span>这是nav1-3页面, 下面是router-view</span>
-    <router-view />
+    <router-view v-slot="{ Component }" >
+      <transition name="fade-transform" mode="out-in">
+          <component :is="Component" ></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
