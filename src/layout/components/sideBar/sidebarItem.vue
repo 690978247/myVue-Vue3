@@ -2,8 +2,10 @@
     <template v-if="!item.hidden">
       <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren)" >
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
-            <i v-if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon ? onlyOneChild.meta.icon : ''" ></i>
-            <span v-if="onlyOneChild.meta.title" >{{onlyOneChild.meta.title}}</span> 
+          <template #title>
+              <span>{{onlyOneChild.meta.title}}</span> 
+          </template>
+          <i v-if="onlyOneChild.meta.icon" :class="onlyOneChild.meta.icon ? onlyOneChild.meta.icon : ''" ></i>
         </el-menu-item>
       </template>
 
