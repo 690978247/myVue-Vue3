@@ -65,7 +65,6 @@ const router = createRouter({
             },
           ]
         },
-
         {
           path: 'nav2-1',
           name: 'Nav2-1',
@@ -75,8 +74,18 @@ const router = createRouter({
         {
           path: 'nav2-2',
           name: 'Nav2-2',
-          component: () => import('../views/navPage/nav2/nav2-2-1.vue'),
-          meta: { title: 'nav2-2页面' }
+          component: () => import('../views/navPage/nav2/nav2-2.vue'),
+          meta: { title: 'nav2-2页面' },
+          children: [
+            {
+              path: 'nav2-2-1',
+              name: 'Nav2-2-1',
+              component: () => import('../views/navPage/nav2/nav2-2-1.vue'),
+              meta: {
+                title: 'Nav2-2-1页面'
+              }
+            }
+          ]
         },
         {
           path: 'nav3-1',
