@@ -39,13 +39,12 @@ import { computed } from 'vue'
       default: ''
     }
   })
-
   const isExternal = function(path) {
     return /^(https?:|mailto:|tel:)/.test(path)
   }
   const router = useRouter()
   const resolvePath = function(routePath) {
-     if (isExternal(routePath)) {
+      if (isExternal(routePath)) {
         return routePath
       }
       if (isExternal(props.basePath)) {

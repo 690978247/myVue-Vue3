@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import sidebarItem from './sidebarItem.vue'
@@ -29,27 +29,6 @@ const isCollapse = computed(() => {
     >
     
     <sidebarItem v-for="route in routes" :item="route" :key="route.path" :base-path="route.path" />
-
-    <!-- <template v-for="(item,key) in routes" :key="key" >
-        <template v-if="!item.hidden" >
-          <el-sub-menu v-if="item.children && item.children.length > 1" :index="item.path" >
-            <template #title >
-              <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-              <span>{{item.meta.title}}</span> 
-            </template>
-            <el-menu-item v-for="(child, key) in item.children" :key="key" :index="item.path + '/' + child.path" >
-              {{child.meta.title}}
-            </el-menu-item>
-          </el-sub-menu>
-
-          <el-menu-item v-else :index="item.redirect" >
-            <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-            <template #title >
-              <span>{{item.meta.title }}</span>
-            </template>
-          </el-menu-item>
-        </template>
-      </template> -->
     </el-menu>
   </div>
 </template>
