@@ -1,15 +1,21 @@
-<template>
-  <div>
-    这是nav1-1页面
-  </div>
-</template>
-
 <script>
+import { h, useCssModule } from 'vue'
 export default {
-  name: 'Nav1-1'
+  setup() {
+    const style = useCssModule()
+    return () =>
+      h(
+        'div',
+        {
+          class: style.success
+        },
+        'Task complete!'
+      )
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-
+<style module>
+.success {
+  color: #090;
+}
 </style>
