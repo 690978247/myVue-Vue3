@@ -11,7 +11,6 @@ const router = createRouter({
       redirect: '/home',
       meta: {
         title: '首页',
-        icon: 'el-icon-star-off'
       },
       children: [
         {
@@ -20,6 +19,7 @@ const router = createRouter({
           component: () => import('../views/home/home.vue'),
           meta: {
             title: '首页',
+            icon: 'el-icon-star-off'
           },
         }
       ]
@@ -99,7 +99,8 @@ const router = createRouter({
           path: 'index',
           component: () => import('../components/HelloWorld.vue'),
           meta: {
-            title: 'Hello Page'
+            title: 'Hello Page',
+            icon: 'el-icon-s-promotion'
           },
         }
       ],

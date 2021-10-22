@@ -1,9 +1,9 @@
 <template>
     <template v-if="!item.hidden">
-      <template v-if="!(item.children && item.children.length !== 0)" >
-        <el-menu-item :index="resolvePath(item.path)">
-          <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-          <span>{{item.meta.title}}</span> 
+      <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren)" >
+        <el-menu-item :index="resolvePath(onlyOneChild.path)">
+          <i :class="onlyOneChild.meta.icon ? onlyOneChild.meta.icon : ''" ></i>
+          <span>{{onlyOneChild.meta.title}}</span> 
         </el-menu-item>
       </template>
 
@@ -28,7 +28,7 @@
 <script setup >
 import path from "path-browserify";
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { ref } from 'vue'
   const props = defineProps({
     // route object
     item: {
@@ -40,6 +40,31 @@ import { computed } from 'vue'
       default: ''
     }
   })
+
+  const onlyOneChild = ref(null)
+
+  const hasOneShowingChild = (children = [], parent) => {
+    const showingChildren = children.filter((item) => {
+      if (item.hidden) {
+        return false
+      } else {
+        // Temp set(will be used if only has one showing child)
+        onlyOneChild.value = item
+        return true
+      }
+    })
+
+    if (showingChildren.length === 1) {
+      return true
+    }
+
+    if (showingChildren.length === 0) {
+      onlyOneChild.value = { ...parent, noShowingChildren: true }
+      return true
+    }
+    return false
+  }
+
   const isExternal = function(path) {
     return /^(https?:|mailto:|tel:)/.test(path)
   }
