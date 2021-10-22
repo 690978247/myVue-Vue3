@@ -1,6 +1,13 @@
 <template>
     <template v-if="!item.hidden">
-      <template v-if="item.children && item.children.length !== 0" >
+      <template v-if="!(item.children && item.children.length !== 0)" >
+        <el-menu-item :index="resolvePath(item.path)">
+          <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
+          <span>{{item.meta.title}}</span> 
+        </el-menu-item>
+      </template>
+
+      <template v-else >
         <el-sub-menu :index="resolvePath(item.path)" popper-append-to-body>
           <template #title>
             <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
@@ -14,12 +21,6 @@
             :base-path="resolvePath(child.path)"
           />
         </el-sub-menu>
-      </template>
-      <template v-else >
-        <el-menu-item :index="resolvePath(item.path)">
-          <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-          <span>{{item.meta.title}}</span> 
-        </el-menu-item>
       </template>
     </template>
 </template>
