@@ -1,12 +1,12 @@
 <template>
   <div>
-    这是nav1-4-1页面
+    这是nav1-3-2页面
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Nav1-4-1'
+  name: 'Nav1-3-1'
 }
 </script>
 

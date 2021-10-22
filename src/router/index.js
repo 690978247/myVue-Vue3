@@ -52,10 +52,16 @@ const router = createRouter({
           meta: { title: 'nav1-3页面' },
           children: [
             {
-              path: 'nav1-4',
-              name: 'Nav1-4',
-              component: () => import('../views/navPage/nav1/nav1-4-1.vue'),
-              meta: { title: 'nav1-4页面' }
+              path: 'nav1-3-1',
+              name: 'Nav1-3-1',
+              component: () => import('../views/navPage/nav1/nav1-3-1.vue'),
+              meta: { title: 'nav1-3-1页面' }
+            },
+            {
+              path: 'nav1-3-2',
+              name: 'Nav1-3-2',
+              component: () => import('../views/navPage/nav1/nav1-3-2.vue'),
+              meta: { title: 'nav1-3-2页面' }
             },
           ]
         },
