@@ -14,6 +14,11 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: 'Home'
+  }
+</script>
 <script setup >
   import { ref, getCurrentInstance, computed, inject, onDeactivated  } from 'vue'
   import { ElMessage } from 'element-plus'
@@ -44,11 +49,11 @@
       }
       return isJPG && isLt2M
   }
-    onDeactivated(() => {
-      clearInterval(timer)
-      timer = null
-      console.log('onDeactivated!')
-    })
+  onDeactivated(() => {
+    clearInterval(timer)
+    timer = null
+    console.log('onDeactivated!')
+  })
 
 </script>
 
