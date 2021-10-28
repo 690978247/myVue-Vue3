@@ -30,8 +30,8 @@ export default {
   // })
 
   onMounted(() => {
-    console.log(myRef)
-    console.log(btn)
+    console.log(myRef.value)
+    console.log(btn.value)
     // nextTick(() => {
     //   console.log(refs[0])
     // })
