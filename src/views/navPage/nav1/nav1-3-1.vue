@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <script setup >
-  import { ref, reactive, onMounted, nextTick } from 'vue'
+  import { ref, reactive, onMounted, nextTick, toRef, toRefs } from 'vue'
   const myRef = ref(null)
   const btn = ref(null)
   const arr = reactive([1, 2, 3])
@@ -24,6 +24,25 @@ export default {
   const setRef = (el) => {
     refs.push(el)
   }
+
+  const state = reactive({
+    foo: 1,
+    bar: 2
+  })
+
+/* ref */
+  // const fooRef = toRef(state, 'foo')
+  // fooRef.value++
+  // console.log(state.foo)
+  // state.foo++
+  // console.log(fooRef.value)
+
+/* refs */
+  const stateAsRefs = toRefs(state)
+  state.foo++
+  console.log(stateAsRefs.foo.value)
+  stateAsRefs.foo.value++
+  console.log(state.foo)
 
   // nextTick(() => {
   //   console.log(refs[0])

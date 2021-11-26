@@ -10,6 +10,22 @@ export default {
 }
 </script>
 
+<script setup >
+  import { effectScope } from 'vue'
+
+  const scope = effectScope()
+
+  scope.run(() => {
+    const doubled = computed(() => counter.value * 2)
+    watch(doubled, () => console.log(doubled.value))
+
+    watchEffect(() => console.log('Count: ', doubled.value))
+
+  })
+
+
+</script>
+
 <style lang="scss" scoped>
 
 </style>
