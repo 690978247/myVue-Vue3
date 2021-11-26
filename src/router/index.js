@@ -25,6 +25,33 @@ const router = createRouter({
       ]
     },
     {
+      path: '/h5',
+      component: Layout,
+      redirect: '/h5/svg',
+      meta: {
+        title: 'H5',
+        icon: 'el-icon-s-promotion'
+      },
+      children: [
+        {
+          path: 'svg',
+          component: () => import('../views/H5/svg.vue'),
+          meta: {
+            title: 'SVG',
+            icon: 'el-icon-s-promotion'
+          },
+        },
+        {
+          path: 'canvas',
+          component: () => import('../views/H5/canvas.vue'),
+          meta: {
+            title: 'Canvas',
+            icon: 'el-icon-s-promotion'
+          },
+        }
+      ],
+    },
+    {
       path: '/nav',
       component: Layout,
       redirect: '/nav/nav1-1',
