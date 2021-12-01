@@ -48,6 +48,14 @@ const router = createRouter({
             title: 'Canvas',
             icon: 'el-icon-s-promotion'
           },
+        },
+        {
+          path: 'canvasStudy',
+          component: () => import('../views/H5/canvas-study.vue'),
+          meta: {
+            title: 'CanvasStudy',
+            icon: 'el-icon-s-promotion'
+          },
         }
       ],
     },

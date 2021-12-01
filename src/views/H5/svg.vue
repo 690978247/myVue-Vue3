@@ -1,7 +1,9 @@
 <template>
   <div>
-    <svg class="svg" >
-      <circle v-for="(item, index) in dots" :key="index" :cx="item.x" :cy="item.y" :r="item.r" :stroke="item.color" stroke-width="1" :fill="item.color" />
+    <svg class="wrap">
+      <g v-for="(item, index) in dots" :key="index" class="block">
+        <circle :cx="item.x" :cy="item.y" :r="item.r" @click="clickData(item)" :stroke="item.color" stroke-width="1" :fill="item.color" />
+      </g>
 
       <!-- 高斯模糊 filter链接id-->
       <!-- <defs>
@@ -63,15 +65,23 @@ export default {
       ]
     }
   },
+  methods: {
+    clickData(item) {
+      item.r = 10
+    },
+  }
 }
 </script>
 
-<style>
-.svg {
+<style lang="scss" scoped>
+.wrap {
   width: 800px;
   height: 500px;
   border: 1px solid #ccc;
   background: url('../../assets/404_images/404.png') no-repeat;
   background-size: 100%;
+}
+.block {
+  position: relative;
 }
 </style>
