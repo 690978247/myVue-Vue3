@@ -1,5 +1,5 @@
 <template>
-  <div class="box" @mousewheel.prevent="wheelZoom($event)">
+  <div class="box" id="box" @mousewheel.prevent="wheelZoom($event)">
     <svg class="wrap" :transform="`scale(${scaleValue})`" ref="svg" @mousedown="handleMouseDown" @mouseup="handleMouseUp" >
       <g v-for="(item, index) in dots" :key="index" class="block" >
         <circle :cx="item.x" :cy="item.y" :r="item.r" @click="clickData(item)" :stroke="item.color" stroke-width="1" :fill="item.color"/>
@@ -73,8 +73,18 @@ export default {
     handleMouseDown (e) {
       let move = moveEvent => {
         this.$nextTick(() => {
-          this.$refs.svg.style.left = moveEvent.offsetX
-          this.$refs.svg.style.top = moveEvent.offsetY
+          let fatherDiv = document.getElementById('box')
+          let fatherX = fatherDiv.offsetLeft
+          let fatherY = fatherDiv.offsetTop
+          console.log('11', fatherX, fatherY)
+          let targetX = moveEvent.clientX
+          let targetY = moveEvent.clientY
+          console.log('22', targetX, targetY)
+          let currentX = (targetX - fatherX - 400) * this.scaleValue
+          let currentY = (targetY - fatherY - 250) * this.scaleValue
+          this.$refs.svg.style.left = currentX
+          this.$refs.svg.style.top = currentY
+          console.log('33', currentX, this.$refs.svg.style.top)
         })
       }
       let up = () => {
