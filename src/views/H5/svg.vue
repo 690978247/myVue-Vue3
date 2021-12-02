@@ -1,29 +1,29 @@
 <template>
   <div class="box" id="box" @mousewheel.prevent="wheelZoom($event)">
-    <svg class="wrap" :transform="`scale(${scaleValue})`" ref="svg" @mousedown="handleMouseDown" @mouseup="handleMouseUp" >
-      <g v-for="(item, index) in dots" :key="index" class="block" >
-        <circle :cx="item.x" :cy="item.y" :r="item.r" @click="clickData(item)" :stroke="item.color" stroke-width="1" :fill="item.color"/>
-      </g>
+      <svg class="wrap" :style="styleObj" ref="svg" @mousedown="handleMouseDown" @mouseup="handleMouseUp" >
+        <g v-for="(item, index) in dots" :key="index" class="block" >
+          <circle :cx="item.x" :cy="item.y" :r="item.r" @click="clickData(item)" :stroke="item.color" stroke-width="1" :fill="item.color"/>
+        </g>
 
-      <!-- 高斯模糊 filter链接id-->
-      <!-- <defs>
-        <filter id="f1" x="0" y="0">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
-        </filter>
-      </defs>
-      <rect width="90" height="90" x="150" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" /> -->
+        <!-- 高斯模糊 filter链接id-->
+        <!-- <defs>
+          <filter id="f1" x="0" y="0">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+          </filter>
+        </defs>
+        <rect width="90" height="90" x="150" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" /> -->
 
-      <!-- feOffset -->
-      <!-- <defs>
-        <filter id="f2" x="0" y="0" width="200%" height="200%" >
-          <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
-          <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
-        </filter>
-      </defs>
-      <rect width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f2)" /> -->
+        <!-- feOffset -->
+        <!-- <defs>
+          <filter id="f2" x="0" y="0" width="200%" height="200%" >
+            <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+            <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+          </filter>
+        </defs>
+        <rect width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f2)" /> -->
 
-    </svg>
-  </div>
+      </svg>
+    </div>
 </template>
 
 <script>
@@ -32,6 +32,10 @@ export default {
   data () {
     return {
       scaleValue: 1,
+      pos: {
+        top: 0,
+        left: 0
+      },
       dots: [
         {
           x: 180,
@@ -66,26 +70,35 @@ export default {
       ]
     }
   },
+  computed: {
+    styleObj () {
+      return {
+        transform: `scale(${this.scaleValue})`,
+        top: this.pos.top,
+        left: this.pos.left
+      }
+    },
+  },
   methods: {
     clickData(item) {
       item.r = 10
     },
     handleMouseDown (e) {
+      let startY = e.clientY
+      let startX = e.clientX
+      let startTop = this.pos.top
+      let startLeft = this.pos.left
+      let $this = this
       let move = moveEvent => {
-        this.$nextTick(() => {
-          let fatherDiv = document.getElementById('box')
-          let fatherX = fatherDiv.offsetLeft
-          let fatherY = fatherDiv.offsetTop
-          console.log('11', fatherX, fatherY)
-          let targetX = moveEvent.clientX
-          let targetY = moveEvent.clientY
-          console.log('22', targetX, targetY)
-          let currentX = (targetX - fatherX - 400) * this.scaleValue
-          let currentY = (targetY - fatherY - 250) * this.scaleValue
-          this.$refs.svg.style.left = currentX
-          this.$refs.svg.style.top = currentY
-          console.log('33', currentX, this.$refs.svg.style.top)
-        })
+        // !#zh 移动的时候，不需要向后代元素传递事件，只需要单纯的移动就OK
+        moveEvent.stopPropagation()
+        moveEvent.preventDefault()
+        let currX = moveEvent.clientX
+        let currY = moveEvent.clientY
+        $this.pos.top = currY - startY + startTop
+        $this.pos.left = currX - startX + startLeft
+        $this.$refs.svg.top = $this.pos.top + 'px'
+        $this.$refs.svg.left = $this.pos.left + 'px'
       }
       let up = () => {
         document.removeEventListener('mousemove', move, true)
