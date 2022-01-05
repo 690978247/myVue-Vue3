@@ -7,6 +7,7 @@ import './progress'
 import store from './store'
 import './assets/styles/index.scss'
 import * as dayjs from 'dayjs'
+import './utils/request'
 // import { $dayjs } from './provides'
 
 
