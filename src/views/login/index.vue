@@ -1,6 +1,6 @@
 <template>
   <div class="login_container" >
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login_form" label-position="left">
+    <el-form ref="formRef" :model="loginForm" :rules="loginRules" class="login_form" label-position="left">
 
       <div class="title_container" >
         <h3 class="title">登 录</h3>
@@ -33,7 +33,7 @@
         </el-input>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click="handleLogin" >Login</el-button>
 
       <div class="tips">
         <span style="margin-right:20px;">用户名: admin</span>
@@ -46,6 +46,7 @@
 
 <script setup >
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { Lock, User, View } from '@element-plus/icons-vue'
 
 const validateUsername = (rule, value, callback) => {
@@ -62,6 +63,7 @@ const validatePassword = (rule, value, callback) => {
     callback()
   }
 }
+const router = useRouter()
 const loading = ref(false)
 const passwordType = ref('password')
 let loginForm = reactive({
@@ -76,6 +78,7 @@ const loginRules = reactive({
 
 const handleLogin = () => {
   console.log('1231',loginForm)
+  router.push('/')
 }
 
 </script>
