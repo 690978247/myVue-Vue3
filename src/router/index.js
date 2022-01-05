@@ -156,6 +156,14 @@ const router = createRouter({
       ],
     },
     {
+      path: '/login',
+      component: import('../views/login/index.vue'),
+      hidden: true,
+      meta: {
+        title: 'Login'
+      }
+    },
+    {
       path: '/404',
       component: NotFound,
       hidden: true,

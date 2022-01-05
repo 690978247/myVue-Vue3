@@ -130,12 +130,13 @@ export default {
   overflow: hidden;
   border: 1px solid #ccc;
   position: relative;
+  background: #000;
 }
 .wrap {
   width: 800px;
   height: 500px;
   position: absolute;
-  background: url('../../assets/404_images/404.png') no-repeat;
+  background: url('../../assets/imgs/画布背景.png') no-repeat;
   background-size: 100%;
   overflow: hidden;
   cursor: move;
