@@ -7,7 +7,7 @@ import './progress'
 import store from './store'
 import './assets/styles/index.scss'
 import * as dayjs from 'dayjs'
-import './utils/request'
+import request from './utils/request'
 // import { $dayjs } from './provides'
 
 
@@ -21,6 +21,7 @@ app.use(store)
 // app.use(dayjs)
 // 挂载Vue全局属性(推荐) 使用依赖，注入方式。 provide挂载， inject获取
 app.provide('$dayjs', dayjs)
+app.provide('request', request);
 
 console.log('当前Vue版本：' + app.version)
 app.mount('#app')
