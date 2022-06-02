@@ -48,3 +48,186 @@ html {
   opacity: 0;
   transform: translateX(30px);
 }
+
+// 重写饿了么样式
+//-------------- 树形控件
+.el-tree {
+  background-color: var(--tree-bg-color) !important;
+  color: var(--tree-color);
+  user-select: none;
+
+  .el-tree-node {
+    &:focus {
+      &>.el-tree-node__content {
+        background: var(--tree-node-hover-bg-color);
+      }
+    }
+
+    &>.el-tree-node__children {
+      overflow: unset;
+    }
+  }
+
+  .el-tree-node__content {
+    height: 28px;
+
+    &:hover {
+      background: linear-gradient(-90deg, #514332 0%, rgba(32, 29, 25, 0) 100%);
+      color: #febf72;
+    }
+
+    &:hover .tree_label {
+      color: #febf72;
+    }
+
+    &:hover .tree_icons {
+      visibility: visible;
+      color: #febf72;
+    }
+  }
+
+  .el-checkbox {
+    .el-tree-node__content {
+      &:hover {
+        background: var(--tree-node-hover-bg-color);
+      }
+
+      &:focus {
+        -webkit-animation: boom 0.2s ease-in;
+        animation: boom 0.2s ease-in;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+      }
+    }
+
+    .el-checkbox__input {
+      &:focus {
+        -webkit-animation: boom 0.2s ease-in;
+        animation: boom 0.2s ease-in;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+      }
+
+      .el-checkbox__inner {
+        width: 19px;
+        height: 19px;
+        border-radius: 4px;
+        border-color: var(--tree-checkbox-border-color);
+        // background-color: var(--tree-checkbox-bg-color);
+        background-color: #37383d;
+        border-color: #37383d;
+
+        &::after {
+          content: "\e670";
+          font-family: "iconfont" !important;
+          font-size: 14px;
+          position: absolute;
+          left: 2px;
+          top: 2px;
+          border-width: 0;
+          transform: scaleY(0);
+          width: unset;
+          height: unset;
+        }
+      }
+
+      &.is-focus {
+        .el-checkbox__inner {
+          border-color: var(--tree-checkbox-border-color);
+        }
+      }
+
+      &.is-checked {
+        .el-checkbox__inner {
+          background-color: var(--tree-checkbox-check-bg-color);
+          border-color: var(--tree-checkbox-check-border-color);
+          color: var(--tree-check-icon-color);
+
+          &::after {
+            transform: scaleY(1);
+          }
+        }
+      }
+
+      &.is-disabled {
+        .el-checkbox__inner {
+          background-color: var(--tree-node-disabled-bg-color);
+          border-color: var(--tree-node-disabled-border-color);
+        }
+
+        &.is-checked {
+          .el-checkbox__inner {
+            background-color: var(--tree-node-disabled-bg-color);
+            border-color: var(--tree-node-disabled-border-color);
+            color: var(--tree-node-disabled-icon-color);
+          }
+        }
+      }
+
+      &.is-indeterminate {
+        .el-checkbox__inner {
+          background-color: var(--tree-checkbox-check-bg-color);
+          border-color: var(--tree-checkbox-check-border-color);
+
+          &::before {
+            content: "";
+            position: absolute;
+            transform: none;
+            height: 2px;
+            top: 8px;
+            right: 4px;
+            left: 4px;
+            background-color: var(--tree-check-icon-color);
+          }
+        }
+      }
+    }
+  }
+
+  .custom_tree_node {
+    font-size: 12px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 8px;
+    overflow: hidden;
+    color: #ccc;
+
+    >div {
+      width: 100%;
+      height: 28px;
+      line-height: 28px;
+    }
+
+    >div.tree_label {
+      width: calc(100% - 20px);
+    }
+
+    >div:last-child {
+      text-align: right;
+      width: 20px;
+    }
+
+    .tree_label {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tree_icons {
+      visibility: hidden;
+    }
+  }
+
+  .el-tree-node__expand-icon {
+    font-size: 16px;
+    color: var(--tree-expand-icon-color);
+  }
+
+  .el-tree-node__label {
+    font-size: 14px;
+    color: var(--tree-color);
+  }
+}

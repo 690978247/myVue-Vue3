@@ -1,175 +1,324 @@
 <template>
-  <div>
-    <span>{{time}}</span>
-
-    <el-upload
-      action="/api/gin_upload"
-      :show-file-list="false"
-      :on-success="uploadSuccess"
-      :before-upload="beforeoutUpload"
-      multiple
-      ref="modelUpload"
-      id="modelUpload"
-    >
-      <div class="popover_item" @mousedown="getElement">
-        <span>模型导入</span>
-        <span>Ctrl + I</span>
-      </div>
-    </el-upload>
-
-    <br />
-
-    <!-- <el-upload
-    class="avatar-uploader"
-    action="https://jsonplaceholder.typicode.com/posts/"
-    :show-file-list="false"
-    :on-success="handleAvatarSuccess"
-    :before-upload="beforeAvatarUpload"
-    >
-      <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-    </el-upload> -->
-
-    <div @click="saveFile" >另存为</div>
-
-
+   <div contentEditable="true" style="border:1px solid #ccc;width:100%;height: 100%;outline: none">
+      this is div
+      <span contentEditable="false" style="border:1px solid #ccc;">this is span</span>
+      dsadasdasdsadasad
+      <span contentEditable="false" style="border:1px solid #ccc;">88888888</span>
+      &nbsp;
   </div>
 </template>
 
-<script >
-  export default {
-    name: 'Home'
-  }
-</script>
-<script setup >
-  import { ref, getCurrentInstance, computed, inject, onDeactivated, nextTick  } from 'vue'
-  import { ElMessage } from 'element-plus'
-  // const { $dayjs } = getCurrentInstance().appContext.config.globalProperties
-  // const time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
+<script>
+import $ from 'jquery'
+export default {
+  name: "hide-show",
+  props: {
+    // 当前组件dataInfo
+    dataInfo: {
+      type: Object,
+      default: () => {
 
-  import {
-  fileOpen,
-  directoryOpen,
-  fileSave,
-  supported,
-} from 'browser-fs-access'
-import { saveAs, FileSaver } from 'file-saver';
-
-const saveFile = async() => {
-  let data = {"camera":{"metadata":{"version":4.5,"type":"Object","generator":"Object3D.toJSON"},"object":{"uuid":"090E77AE-1FE7-47F5-A009-12AB8C8D6D98","type":"PerspectiveCamera","name":"Camera","layers":1,"matrix":[1,0,0,0,0,0.9284766908852593,-0.37139067635410383,0,0,0.37139067635410383,0.9284766908852593,0,0,10.000000000000002,25,1],"fov":50,"zoom":1,"near":1,"far":1000,"focus":10,"aspect":2.3645320197044337,"filmGauge":35,"filmOffset":0}},"scene":{"metadata":{"version":4.5,"type":"Object","generator":"Object3D.toJSON"},"geometries":[{"uuid":"88E395B8-576D-4139-B61A-10FADE8FD52C","type":"BoxGeometry","width":1,"height":1,"depth":1,"widthSegments":1,"heightSegments":1,"depthSegments":1}],"materials":[{"uuid":"CD523BB0-185E-4490-9C45-BFAECCAC7D58","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"object":{"uuid":"1F108E3C-1DF7-4F2A-A2F7-3BC7ABEC03BB","type":"Scene","name":"Scene","layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],"children":[{"uuid":"B8337FF6-7F0E-4159-B32F-EA564B06072A","type":"Group","userData":{"type":"结构件","isMulti":true},"layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},{"uuid":"85BF2534-518D-42C5-A003-AD213996CDF9","type":"Mesh","name":"BoxGeometry","userData":{"source":"geometry","material":[{"metadata":{"version":4.5,"type":"Material","generator":"Material.toJSON"},"uuid":"664DE36B-8371-4B50-819E-1C5B31D51992","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"createBy":"程序创建","createFunc":"editor.addObject","extras":[{"label":"标识数据","value":0,"note":""},{"label":"类型图像","value":0,"note":""},{"label":"型号","value":0,"note":""},{"label":"制造商","value":0,"note":""},{"label":"URL","value":0,"note":""},{"label":"说明","value":0,"note":""},{"label":"部件代码","value":0,"note":""}],"type":"模型"},"layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],"geometry":"88E395B8-576D-4139-B61A-10FADE8FD52C","material":"CD523BB0-185E-4490-9C45-BFAECCAC7D58"}]}},"layer":[],"selectedList":[{"metadata":{"version":4.5,"type":"Object","generator":"Object3D.toJSON"},"geometries":[{"uuid":"88E395B8-576D-4139-B61A-10FADE8FD52C","type":"BoxGeometry","width":1,"height":1,"depth":1,"widthSegments":1,"heightSegments":1,"depthSegments":1}],"materials":[{"uuid":"CD523BB0-185E-4490-9C45-BFAECCAC7D58","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"object":{"uuid":"85BF2534-518D-42C5-A003-AD213996CDF9","type":"Mesh","name":"BoxGeometry","userData":{"source":"geometry","material":[{"metadata":{"version":4.5,"type":"Material","generator":"Material.toJSON"},"uuid":"664DE36B-8371-4B50-819E-1C5B31D51992","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"createBy":"程序创建","createFunc":"editor.addObject","extras":[{"label":"标识数据","value":0,"note":""},{"label":"类型图像","value":0,"note":""},{"label":"型号","value":0,"note":""},{"label":"制造商","value":0,"note":""},{"label":"URL","value":0,"note":""},{"label":"说明","value":0,"note":""},{"label":"部件代码","value":0,"note":""}],"type":"模型"},"layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],"geometry":"88E395B8-576D-4139-B61A-10FADE8FD52C","material":"CD523BB0-185E-4490-9C45-BFAECCAC7D58"}}],"sceneList":[],"modelList":[{"metadata":{"version":4.5,"type":"Object","generator":"Object3D.toJSON"},"geometries":[{"uuid":"88E395B8-576D-4139-B61A-10FADE8FD52C","type":"BoxGeometry","width":1,"height":1,"depth":1,"widthSegments":1,"heightSegments":1,"depthSegments":1}],"materials":[{"uuid":"CD523BB0-185E-4490-9C45-BFAECCAC7D58","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"object":{"uuid":"85BF2534-518D-42C5-A003-AD213996CDF9","type":"Mesh","name":"BoxGeometry","userData":{"source":"geometry","material":[{"metadata":{"version":4.5,"type":"Material","generator":"Material.toJSON"},"uuid":"664DE36B-8371-4B50-819E-1C5B31D51992","type":"MeshBasicMaterial","name":"正方体","color":65280,"reflectivity":1,"refractionRatio":0.98,"depthFunc":3,"depthTest":true,"depthWrite":true,"colorWrite":true,"stencilWrite":false,"stencilWriteMask":255,"stencilFunc":519,"stencilRef":0,"stencilFuncMask":255,"stencilFail":7680,"stencilZFail":7680,"stencilZPass":7680}],"createBy":"程序创建","createFunc":"editor.addObject","extras":[{"label":"标识数据","value":0,"note":""},{"label":"类型图像","value":0,"note":""},{"label":"型号","value":0,"note":""},{"label":"制造商","value":0,"note":""},{"label":"URL","value":0,"note":""},{"label":"说明","value":0,"note":""},{"label":"部件代码","value":0,"note":""}],"type":"模型"},"layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],"geometry":"88E395B8-576D-4139-B61A-10FADE8FD52C","material":"CD523BB0-185E-4490-9C45-BFAECCAC7D58"}}],"bgList":[],"funcComponentList":[],"dataComponentList":[],"group":{"metadata":{"version":4.5,"type":"Object","generator":"Object3D.toJSON"},"object":{"uuid":"B8337FF6-7F0E-4159-B32F-EA564B06072A","type":"Group","userData":{"type":"结构件","isMulti":true},"layers":1,"matrix":[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]}},"mixers":[]}
-  if (supported) {
-    console.log('Using the File System Access API.')
-  } else {
-    console.log('Using the fallback implementation.')
-  }
-  // const blob = await fileOpen({
-  //   mimeTypes: ['image/*']
-  // })
-  // const blob = new Blob([data]);
-  // await fileSave(blob, {
-  //   fileName: 'Untitled.js',
-  //   extensions: ['.js'],
-  // });
-
-  var FileSaver = require('file-saver');
-  var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-  FileSaver.saveAs(blob, "hello world.txt");
-
-}
-
-
-
-  let imageUrl = ref('')
-
-  const $dayjs = inject('$dayjs')
-  const request = inject("request")
-  let time = ref($dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
-
-  let timer = setInterval(() => {
-    time.value = $dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss')
-  }, 1000)
-
-  const handleAvatarSuccess = (res, file) => {
-    imageUrl = URL.createObjectURL(file.raw)
-  }
-  const beforeAvatarUpload = (file) => {
-    const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-
-      if (!isJPG) {
-        ElMessage.error('上传头像图片只能是 JPG 格式!')
       }
-      if (!isLt2M) {
-        ElMessage.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
-  }
-  onDeactivated(() => {
-    clearInterval(timer)
-    timer = null
-    console.log('onDeactivated!')
-  })
+    },
 
-  const getElement = () => {
-    nextTick(() => {
-      document.getElementsByClassName(
-        "el-upload__input"
-      )[0].webkitdirectory = true;
+    // 画布里面已经拖拽的并且key存在的组件
+    data: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      activeNames: ["1"],
+      collapseData: [
+        {
+          title: "当前表单",
+          type: 1,
+          list: [
+            {
+              key: '1',
+              name: '测试01'
+            }
+          ]
+        }
+      ],
+      paramsKey: {}
+    };
+  },
+  methods: {
+    // 格式化数据方法
+    handleFormatData() {
+      const list = [];
+      const params = {};
+      this.data.forEach(item => {
+        // 区分 栅格 标签页 子表 这几类布局组件
+        if (item.type === "grid") {
+          // 栅格
+          item.columns.forEach(val => {
+            val.list.forEach(v => {
+              if (v.model && v.model != "") {
+                this.$set(this.paramsKey, v.model, v.value);
+                list.push({
+                  name: v.name,
+                  type: 1,
+                  key: v.model
+                });
+              }
+            });
+          });
+        } else if (item.type === "tabs") {
+          // 标签页
+          item.tab.forEach(val => {
+            val.columns.forEach(v => {
+              if (v.type === "grid") {
+                v.columns.forEach(col => {
+                  col.list.forEach(l => {
+                    if (l.model && l.model != "") {
+                      this.$set(this.paramsKey, l.model, l.value);
+                      list.push({
+                        name: l.name,
+                        type: 1,
+                        key: l.model
+                      });
+                    }
+                  });
+                });
+              } else {
+                if (v.model && v.model != "") {
+                  this.$set(this.paramsKey, v.model, v.value);
+                  list.push({
+                    name: v.name,
+                    type: 1,
+                    key: v.model
+                  });
+                }
+              }
+            });
+          });
+        } else if (item.type === "childrenTable") {
+          // 子表
+          // 子表不能作为控制显示隐藏的条件
+          console.log("item: ", item);
+        } else {
+          // 普通组件
+          if (item.model && item.model != "") {
+            this.$set(this.paramsKey, item.model, item.value);
+            list.push({
+              name: item.name,
+              type: 1,
+              key: item.model
+            });
+          }
+        }
+      });
+      // this.collapseData[0]["list"] = list.filter(
+      //   val => val.key != this.dataInfo.model
+      // );
+    },
+
+    handleChange(val) {},
+
+    // 清空
+    handleClearExpression() {
+      $(".flex").empty();
+    },
+
+    // 获取最终表达式
+    handleGetExpression() {
+      let m = ''
+      let str = $('.flex').prop("outerHTML")
+      // 谷歌浏览器如果开启翻译功能会导致生成font标签包裹文本
+      str = str.replace(/<font style="vertical-align: inherit;">/g, '')
+      str = str.replace(/<\/font>/g, '')
+      str = str.replace(/<div contenteditable="true" type="parent" class="flex">/g, '')
+      str = str.replace(/<\/div>/g, '')
+      $('.flex').empty()
+      $('.flex').html(str)
+      Array.from($('.flex').contents()).forEach(val => {
+        if ($(val).attr('data-key')) {
+          m = m + $(val).attr('data-key')
+        } else {
+          m = m + $(val).text()
+        }
+      })
+
+      try {
+        eval(m);
+        if (
+          this.dataInfo.options &&
+          typeof this.dataInfo.options !== "string"
+        ) {
+          this.dataInfo.options.js_content = m;
+          this.dataInfo.options.htmlStr = $(".flex").prop("outerHTML");
+        } else {
+          this.dataInfo.options = {};
+          this.dataInfo.options.js_content = m;
+          this.dataInfo.options.htmlStr = $(".flex").prop("outerHTML");
+        }
+        this.$emit("colse-dailog");
+        return str;
+      } catch (err) {
+        console.log(err);
+        this.$message.error("配置的表达式不合法，请检查！");
+      }
+    }
+  },
+  mounted() {
+    const _this = this;
+    $(".hide-show-right-box").html('');
+    $(".flex").keydown(function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+      }
+    });
+    this.handleFormatData();
+    sel = window.getSelection();
+    var sel, range;
+    var textContent;
+
+    $('.flex').focus()
+    $('.flex').blur(function() {
+      getblur()
+    })
+
+    function getblur() {
+      range = sel.getRangeAt(0);
+    }
+
+    // 光标所在位置追加元素
+    function insertHtmlAtCaret(html) {
+      if (window.getSelection) {
+        // IE9 and non-IE
+        if (sel.getRangeAt && sel.rangeCount) {
+          var el = document.createElement("div");
+          el.innerHTML = html;
+          var frag = document.createDocumentFragment(),
+            node,
+            lastNode;
+          while ((node = el.firstChild)) {
+            lastNode = frag.appendChild(node);
+          }
+          range.insertNode(frag); // Preserve the selection
+          if (lastNode) {
+            range = range.cloneRange();
+            range.setStartAfter(lastNode);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
+          }
+        }
+      } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
+      }
+      textContent = $(".flex").html();
+    }
+
+    this.$nextTick(() => {
+      $('.collapse-item').click(function() {
+        const { name, key } = JSON.parse($(this).attr('data'))
+        let htmlStr = "";
+        const tempKey = "this.paramsKey." + key;
+        // hspace=15
+        htmlStr = `<img data-key="${ tempKey }" style="background: #3296fa;" src="" hspace=15>`;
+        insertHtmlAtCaret(htmlStr)
+      })
     })
   }
-
-  /* 模型导入 */
-const uploadList = ref([])
-const uploadSuccess = (res, file, fileList) => {
-  console.log('res', res)
-  console.log('file', file)
-  console.log('fileList', fileList)
-  uploadList.value.push(file)
-  showImport.value = true
-}
-
-const beforeoutUpload = (file) => {
-  console.log('file', file)
-}
-
+};
 </script>
 
 <style lang="scss" scoped>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409eff;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
+.hide-show {
+  margin: 0 auto;
+  width: 700px;
+  height: 450px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  .hide-show-left {
+    border-right: 1px solid #e6e6e6;
+    width: 220px;
+    height: 100%;
+    background: #e6e6e6;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    overflow: auto;
+    box-sizing: border-box;
+    .collapse-item {
+      text-align: center;
+      height: 32px;
+      line-height: 32px;
+      border-bottom: 1px solid #e6e6e6;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+    }
+
+    .collapse-item:hover {
+      background: #eee;
+      height: 32px;
+      line-height: 32px;
+    }
+
+    .el-collapse-item__header {
+      background: #3296fa;
+      color: #fff;
+      padding-left: 15px;
+    }
+    .el-collapse-item__content {
+      padding-bottom: 0;
+    }
   }
 
-  .popover_item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 0;
-  cursor: pointer;
-  span:first-child {
-    margin-right: 10px;
-  }
-  &:hover {
-    color: var(--popover_hover_color)
+  .hide-show-right {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    .hide-show-right-box {
+      height: 250px;
+      overflow: auto;
+      padding: 10px;
+      .flex {
+        color: #666;
+        padding: 20px;
+        outline: none;
+        line-height: 28px;
+        height: 28px;
+        font-size: 20px;        
+      }
+      .flex,  
+      .flex * {  
+          -webkit-user-select: auto;  
+          -webkit-user-modify: read-write;  
+      }
+      width: 100%;
+      padding: 10px;
+    }
+    .hide-show-right-bottom {
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      height: 200px;
+      .title {
+        background: #eed5d2;
+        height: 32px;
+        line-height: 32px;
+        padding-left: 20px;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+      ul {
+        padding-left: 20px;
+        li {
+          line-height: 22px;
+        }
+      }
+    }
   }
 }
 </style>

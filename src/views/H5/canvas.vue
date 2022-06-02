@@ -1,10 +1,15 @@
 <template>
   <div>
     <canvas class="wrap" id="myCanvas" width="800" height="500" ></canvas>
+    <br />
+    <div>
+
+    </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
   name: 'Canvas',
   data () {
@@ -40,10 +45,13 @@ export default {
           r: 4,
           color: '#FFFF00'
         }
-      ]
+      ],
+      arr:['1','2','3','4']
     }
   },
   mounted () {
+    this.arr.push(_.uniqueId(this.arr))
+    console.log('lllllllllllllll', this.arr)
     this.draw()
   },
   methods: {

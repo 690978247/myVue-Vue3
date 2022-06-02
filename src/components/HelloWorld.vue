@@ -1,55 +1,83 @@
-<script setup>
-import { ref, onMounted, watch, computed } from 'vue'
-
-defineProps({
-  msg: String
-})
-
-const count = ref(0)
-const list = [1,2,3,4,5]
-const itemRefs = []
-const calaulate = computed(() => count.value * 2)
-const theme = {
-  color: 'green'
-}
-// const color = ref('blue')
-const root = ref(null)
-
-const setItemRef = el => {
-  if (el) {
-    itemRefs.push(el)
-  }
-}
-watch(count, (newVal, oldVal) => {
-  console.log('The new counter value is: ' + count.value)
-})
-
-onMounted(() => {
-  itemRefs.forEach(item => {
-    console.log(item)
-  })
-})
-
-</script>
-
 <template>
-  <div>
-    <!-- 这里需要有一个根节点，否则router-view transtions 会报错 -->
-    <div ref="root">This is a root element</div>
-    <h1 class="text" >{{ msg }}</h1>
-    <el-input v-model="count" ></el-input>
-    <el-input v-model="calaulate" ></el-input>
-    <div v-for="item in list" :key="item" :ref="setItemRef">{{item}}</div>
-    <button type="button" @click="count++">count is: {{ count }}</button>
+  <el-table
+    ref="multipleTableRef"
+    :data="tableData"
+    style="width: 100%"
+    @selection-change="handleSelectionChange"
+  >
+    <el-table-column type="selection" width="55" />
+    <el-table-column label="Date" width="120">
+      <template #default="scope">{{ scope.row.date }}</template>
+    </el-table-column>
+    <el-table-column property="name" label="Name" width="120" />
+    <el-table-column property="address" label="Address" show-overflow-tooltip />
+  </el-table>
+  <div style="margin-top: 20px">
+    <el-button @click="toggleSelection"
+      >Toggle selection status of second and third rows</el-button
+    >
+    <el-button @click="clearSelection">Clear selection</el-button>
   </div>
 </template>
 
-<style scoped>
-a {
-  color: #42b983;
+<script lang="ts" setup>
+import { ref, onMounted, nextTick } from 'vue'
+
+
+const multipleTableRef = ref()
+const multipleSelection = ref([])
+const toggleSelection = () => {
+    multipleTableRef.value.toggleRowSelection(tableData.value[0], true)
+    
 }
-.text {
-  color: v-bind('theme.color');
-  /* color: v-bind('color'); */
+
+const clearSelection = () => {
+  multipleTableRef.value.clearSelection()
 }
-</style>
+const handleSelectionChange = (val) => {
+  multipleSelection.value = val
+}
+  onMounted(() => {
+    nextTick(() => {
+      multipleTableRef.value.toggleRowSelection(tableData.value[1], undefined)
+    })
+  })
+
+const tableData = ref([
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-08',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-06',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-07',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+])
+</script>

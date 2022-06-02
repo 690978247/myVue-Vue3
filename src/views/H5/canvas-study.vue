@@ -1,10 +1,14 @@
 <template>
   <div>
     <canvas id="canvas" width="600" height="300" @mouseover="handleMousemove" ></canvas>
+    <div>tttttttttt{{testVal}}</div>
+    <el-input v-model="testVal" />
   </div>
 </template>
 
 <script>
+import { useLocalStorage } from '@vueuse/core'
+
 export default {
   name: 'CanvasStudy',
   data () {
@@ -17,11 +21,14 @@ export default {
         radius: 25,
         color: 'blue'
       },
-      raf: ''
+      raf: '',
+      testVal: '',
     }
   },
   mounted () {
-    this.draw()
+    // this.draw()
+    this.testVal =  useLocalStorage('testVal', '1');
+    console.log('aaaaaaaaaaaa', this.testVal)
   },
   methods: {
     draw () {

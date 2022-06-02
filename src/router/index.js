@@ -156,6 +156,25 @@ const router = createRouter({
       ],
     },
     {
+      path: '/js',
+      component: Layout,
+      redirect: '/js/es5',
+      meta: {
+        title: 'Js Page',
+        icon: 'el-icon-s-promotion'
+      },
+      children: [
+        {
+          path: 'es5',
+          component: () => import('../views/JS/index.vue'),
+          meta: {
+            title: 'ES5',
+            icon: 'el-icon-s-promotion'
+          },
+        }
+      ],
+    },
+    {
       path: '/login',
       component: () => import('../views/login/index.vue'),
       hidden: true,
