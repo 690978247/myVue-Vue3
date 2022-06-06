@@ -183,6 +183,38 @@ const router = createRouter({
       }
     },
     {
+      path: '/vue3',
+      component: Layout,
+      redirect: '/vue3/page',
+      meta: {
+        title: 'Vue3 Study',
+        icon: 'el-icon-s-promotion'
+      },
+      children: [
+        {
+          path: 'page',
+          component: () => import('../views/Vue3/attrs/attrs.vue'),
+          meta: {
+            title: '多层组件传值($attrs)',
+          },
+        },
+        {
+          path: 'mitt',
+          component: () => import('../views/Vue3/mitt/mitt.vue'),
+          meta: {
+            title: '组件传值(mitt)',
+          },
+        },
+        {
+          path: 'plus',
+          component: () => import('../views/Vue3/elementPlus/messageBox.vue'),
+          meta: {
+            title: 'elementPlus-MessageBox',
+          },
+        }
+      ],
+    },
+    {
       path: '/404',
       component: NotFound,
       hidden: true,
